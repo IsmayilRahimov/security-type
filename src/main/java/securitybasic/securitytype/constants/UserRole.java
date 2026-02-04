@@ -5,8 +5,7 @@ public enum UserRole {
 
     ADMIN,
     USER,
-    MODERATOR,
-    ;
+    MODERATOR;
 
 
     UserRole() {

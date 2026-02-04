@@ -20,7 +20,7 @@ public class UserController {
     private final UserServiceImpl userService;
 
 
-    @PostMapping("/login")
+    @PostMapping("/sign-up")
     public ResponseEntity<String> login(@RequestBody Users user) {
         return userService.login(user.getUsername(), user.getPassword());
     }

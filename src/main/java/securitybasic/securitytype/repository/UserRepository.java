@@ -6,7 +6,7 @@ import securitybasic.securitytype.model.Users;
 
 import java.util.Optional;
 @Repository
-public interface UseRepository extends JpaRepository<Users, Long> {
+public interface UserRepository extends JpaRepository<Users, Long> {
 
     Optional<Users> findByUsername(String username);
 
