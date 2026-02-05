@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import securitybasic.securitytype.config.JwtUtil;
 import securitybasic.securitytype.model.Users;
 import securitybasic.securitytype.repository.UserRepository;
 import securitybasic.securitytype.service.UserService;
@@ -20,6 +21,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
 
 
     @Override
@@ -41,6 +43,6 @@ public class UserServiceImpl implements UserService {
         if (!matches) {
             throw new UsernameNotFoundException("Invalid username or password");
         }
-        return "Login successful";
+        return jwtUtil.generateToken(user.getUsername(), user.getRole());
     }
 }
