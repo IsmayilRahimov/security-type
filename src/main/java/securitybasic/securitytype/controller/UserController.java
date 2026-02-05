@@ -2,10 +2,7 @@ package securitybasic.securitytype.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import securitybasic.securitytype.model.Users;
 import securitybasic.securitytype.service.imp.UserServiceImpl;
 
@@ -16,6 +13,12 @@ public class UserController {
 
 
     private final UserServiceImpl userService;
+
+
+    @GetMapping("/secured")
+    public String secured() {
+        return "This is the secured endpoint";
+    }
 
 
     @PostMapping("/sign-up")
