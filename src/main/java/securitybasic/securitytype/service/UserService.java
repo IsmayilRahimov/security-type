@@ -6,7 +6,7 @@ import securitybasic.securitytype.model.Users;
 
 public interface UserService {
 
-    ResponseEntity<String> login(String username, String password);
+    Users register(Users users);
 
-    ResponseEntity<Users> register(Users users);
+    String login(String username, String password);
 }

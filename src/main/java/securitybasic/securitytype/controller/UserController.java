@@ -2,8 +2,6 @@ package securitybasic.securitytype.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,12 +19,13 @@ public class UserController {
 
 
     @PostMapping("/sign-up")
-    public ResponseEntity<String> login(@RequestBody Users user) {
-        return userService.login(user.getUsername(), user.getPassword());
+    public ResponseEntity<Users> signUp(@RequestBody Users user) {
+        return ResponseEntity.ok(userService.register(user));
     }
 
     @PostMapping("/sign-in")
-    public ResponseEntity<Users> signIn(@RequestBody Users user) {
-        return userService.register(user);
+    public ResponseEntity<String> signIn(@RequestBody Users user) {
+        String result = userService.login(user.getUsername(), user.getPassword());
+        return ResponseEntity.ok(result);
     }
 }

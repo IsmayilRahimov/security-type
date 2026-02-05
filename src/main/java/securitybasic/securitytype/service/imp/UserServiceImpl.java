@@ -3,6 +3,7 @@ package securitybasic.securitytype.service.imp;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import securitybasic.securitytype.model.Users;
@@ -22,12 +23,24 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public ResponseEntity<String> login(String username, String password) {
-        return null;
+    public Users register(Users users) {
+        users.setPassword(passwordEncoder.encode(users.getPassword()));
+        Users savedUser = userRepository.save(users);
+        log.info("Users registered successfully");
+
+        return savedUser;
     }
 
     @Override
-    public ResponseEntity<Users> register(Users users) {
-        return null;
+    public String login(String username, String password) {
+        Users user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Username not found"));
+
+        boolean matches = passwordEncoder.matches(password, user.getPassword());
+
+        if (!matches) {
+            throw new UsernameNotFoundException("Invalid username or password");
+        }
+        return "Login successful";
     }
 }
