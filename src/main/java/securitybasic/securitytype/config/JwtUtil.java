@@ -13,14 +13,18 @@ import java.util.Date;
 public class JwtUtil {
 
 
-    private final String SECRET_KEY = "adkasdkasdqqqq1312lasfajkgsmczfakjnqorkjdadwqrtqtzatuyujghg";
+    private final String SECRET_KEY = "adkasdkasdqqqq1312lasfajkgsmczfakjnqorkjdadwqrtqtzatrewradfasdad12123adasdcacdqwcqwdqecwqce12e1uyujghg";
+
+    private final Long EXPIRATION_TIME = 864_000_000L;
+
 
     public String generateToken(String username, UserRole role) {
+
         return Jwts.builder()
                 .setSubject(username)
-                .claim(username, role)
+                .claim("role", role)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
                 .compact();
     }
