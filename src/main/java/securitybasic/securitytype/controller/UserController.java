@@ -20,6 +20,11 @@ public class UserController {
         return "This is the secured endpoint";
     }
 
+    @GetMapping("/info")
+    public String info() {
+        return "This is the info endpoint";
+    }
+
 
     @PostMapping("/sign-up")
     public ResponseEntity<Users> signUp(@RequestBody Users user) {
