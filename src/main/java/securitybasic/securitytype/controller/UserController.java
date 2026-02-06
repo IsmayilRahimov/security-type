@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import securitybasic.securitytype.model.Users;
 import securitybasic.securitytype.service.imp.UserServiceImpl;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/users")
@@ -23,6 +25,12 @@ public class UserController {
     @GetMapping("/info")
     public String info() {
         return "This is the info endpoint";
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Users>> getAllUsers() {
+        System.out.println("Get all users");
+        return userService.login();
     }
 
 
