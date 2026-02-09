@@ -33,6 +33,11 @@ public class UserController {
         return userService.login();
     }
 
+    @GetMapping
+    public ResponseEntity<List<Users>> getAllUsersByUsername(@RequestParam String username) {
+        System.out.println("Get all users by username");
+    }
+
 
     @PostMapping("/sign-up")
     public ResponseEntity<Users> signUp(@RequestBody Users user) {
