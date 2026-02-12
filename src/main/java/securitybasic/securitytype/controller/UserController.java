@@ -38,6 +38,11 @@ public class UserController {
         System.out.println("Get all users by username");
     }
 
+    @GetMapping("/dashboard")
+    public String dashboard() {
+        return "This is the dashboard endpoint";
+    }
+
 
     @PostMapping("/sign-up")
     public ResponseEntity<Users> signUp(@RequestBody Users user) {
