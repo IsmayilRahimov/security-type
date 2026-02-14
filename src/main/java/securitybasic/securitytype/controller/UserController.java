@@ -44,6 +44,12 @@ public class UserController {
     }
 
 
+
+    @GetMapping("/info")
+    public String infos() {
+        return "This is the info endpoint";
+    }
+
     @PostMapping("/sign-up")
     public ResponseEntity<Users> signUp(@RequestBody Users user) {
         return ResponseEntity.ok(userService.register(user));
