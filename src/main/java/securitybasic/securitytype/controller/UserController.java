@@ -27,22 +27,15 @@ public class UserController {
         return "This is the info endpoint";
     }
 
-    @GetMapping
-    public ResponseEntity<List<Users>> getAllUsers() {
-        System.out.println("Get all users");
-        return userService.login();
+    private Integer num() {
+        return 1;
     }
 
-    @GetMapping
-    public ResponseEntity<List<Users>> getAllUsersByUsername(@RequestParam String username) {
-        System.out.println("Get all users by username");
-    }
 
     @GetMapping("/dashboard")
     public String dashboard() {
         return "This is the dashboard endpoint";
     }
-
 
 
     @GetMapping("/info")
